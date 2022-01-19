@@ -31,7 +31,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
         backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 1,
-        title: Column(
+        title: Row(
           children: <Widget>[
             CircleAvatar(
               child: const Text(
@@ -47,9 +47,12 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
             const SizedBox(
               height: 10.0,
             ),
-            const Text(
-              'Test001',
-              style: TextStyle(color: Colors.black87, fontSize: 10.0),
+            const Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                'Test001',
+                style: TextStyle(color: Colors.black87, fontSize: 20.0),
+              ),
             ),
           ],
         ),
