@@ -14,46 +14,16 @@ class UsersScreen extends StatefulWidget {
 class _UsersScreenState extends State<UsersScreen> {
   final users = [
     User(
-      online: false,
-      email: 'test001@test.com',
-      name: 'test001',
+      userStatus: false,
+      userEmail: 'test001@test.com',
+      userName: 'test001',
       userId: '001',
     ),
     User(
-      online: true,
-      email: 'test002@test.com',
-      name: 'test002',
+      userStatus: false,
+      userEmail: 'test002@test.com',
+      userName: 'test002',
       userId: '002',
-    ),
-    User(
-      online: false,
-      email: 'test003@test.com',
-      name: 'test003',
-      userId: '003',
-    ),
-    User(
-      online: false,
-      email: 'test004@test.com',
-      name: 'test004',
-      userId: '004',
-    ),
-    User(
-      online: true,
-      email: 'test005@test.com',
-      name: 'test005',
-      userId: '005',
-    ),
-    User(
-      online: true,
-      email: 'test006@test.com',
-      name: 'test006',
-      userId: '006',
-    ),
-    User(
-      online: true,
-      email: 'test007@test.com',
-      name: 'test007',
-      userId: '007',
     ),
   ];
 
@@ -117,11 +87,11 @@ class _UsersScreenState extends State<UsersScreen> {
 
   ListTile _userListTile(User user) {
     return ListTile(
-      title: Text(user.name),
-      subtitle: Text(user.email),
+      title: Text(user.userName),
+      subtitle: Text(user.userEmail),
       leading: CircleAvatar(
         child: Text(
-          user.name.substring(0, 2),
+          user.userName.substring(0, 2),
           style: const TextStyle(
             color: Colors.white,
           ),
@@ -130,7 +100,7 @@ class _UsersScreenState extends State<UsersScreen> {
       ),
       trailing: Icon(
         Icons.circle_rounded,
-        color: !user.online ? Colors.greenAccent : Colors.red,
+        color: !user.userStatus ? Colors.greenAccent : Colors.red,
         size: 15,
       ),
     );

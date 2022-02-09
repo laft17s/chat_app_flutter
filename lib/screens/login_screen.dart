@@ -1,5 +1,9 @@
-import 'package:chat_flutter_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:chat_flutter_app/widgets/widgets.dart';
+import 'package:chat_flutter_app/services/auth_service.dart';
+import 'package:chat_flutter_app/helpers/show_alert.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -59,6 +63,31 @@ class __FormLoginScreenState extends State<_FormLoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(
+      context,
+      listen: false,
+    );
+
+    _loginUser() async {
+      FocusScope.of(context).unfocus();
+
+      final loginUserOK = await authService.loginUser(
+        emailController.text.trim(),
+        passwordController.text.trim(),
+      );
+
+      if (loginUserOK) {
+        print('OK');
+      } else {
+        // print('Credenciales no Válidas');
+        showAlert(
+          context,
+          'LOGIN Incorrecto',
+          'Credenciales NO Válidas.\nIntente nuevamente...',
+        );
+      }
+    }
+
     return Container(
       margin: const EdgeInsets.symmetric(
         horizontal: 20.0,
@@ -81,8 +110,7 @@ class __FormLoginScreenState extends State<_FormLoginScreen> {
           ),
           CustomElevatedButton(
             title: 'Ingrese',
-            onPressed: () =>
-                print('${emailController.text}\n${passwordController.text}'),
+            onPressed: authService.validating ? () => null : () => _loginUser,
           ),
         ],
       ),

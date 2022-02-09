@@ -47,3 +47,10 @@ app.*.map.json
 
 # Assets
 /assets
+
+# Global environments
+/lib/global/
+
+# VS Code
+
+.vscode/
